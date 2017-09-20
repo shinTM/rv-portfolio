@@ -63,7 +63,7 @@ if ( ! class_exists( 'RV_Portfolio' ) ) {
 			$this->includes();
 
 			// Load the installer core.
-			add_action( 'after_setup_theme', require( CHERRY_PROJECTS_DIR . 'cherry-framework/setup.php' ), 0 );
+			add_action( 'after_setup_theme', require( RV_PORTFOLIO_DIR . 'cherry-framework/setup.php' ), 0 );
 
 			// Load the core functions/classes required by the rest of the theme.
 			add_action( 'after_setup_theme', array( $this, 'get_core' ), 1 );
@@ -80,7 +80,7 @@ if ( ! class_exists( 'RV_Portfolio' ) ) {
 			add_action( 'plugins_loaded', array( $this, 'admin' ),     3 );
 
 			// Load public-facing style sheet.
-			add_action( 'wp_enqueue_scripts',         array( $this, 'enqueue_styles' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 
 			// Load public-facing JavaScript.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -276,10 +276,7 @@ if ( ! class_exists( 'RV_Portfolio' ) ) {
 		 * @since 1.0.0
 		 */
 		function activation() {
-			rv_portfolio_registration()->register();
-			rv_portfolio_registration()->register_taxonomy();
 
-			flush_rewrite_rules();
 		}
 
 		/**
@@ -288,7 +285,7 @@ if ( ! class_exists( 'RV_Portfolio' ) ) {
 		 * @since 1.0.0
 		 */
 		function deactivation() {
-			flush_rewrite_rules();
+
 		}
 
 		/**

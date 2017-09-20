@@ -30,9 +30,10 @@ class RV_Portfolio_Registration {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		// Adds the testimonials post type.
-		add_action( 'after_setup_theme', array( __CLASS__, 'register' ) );
-		add_action( 'after_setup_theme', array( __CLASS__, 'register_taxonomy' ) );
+
+		// Adds the team post type.
+		add_action( 'init', array( $this, 'register_post_type' ) );
+		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
 		add_action( 'post.php',          array( $this, 'add_post_formats_support' ) );
 		add_action( 'load-post.php',     array( $this, 'add_post_formats_support' ) );
@@ -45,7 +46,7 @@ class RV_Portfolio_Registration {
 	 * @since 1.0.0
 	 * @link http://codex.wordpress.org/Function_Reference/register_post_type
 	 */
-	public function register() {
+	public function register_post_type() {
 
 		$labels = array(
 			'name'               => __( 'RV Portfolio', 'rv-portfolio' ),
